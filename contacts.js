@@ -38,6 +38,8 @@ async function removeContact(contactId) {
   try {
     const contactList = await parsedContacts();
     const delContact = contactList.filter((item) => item.id !== contactId);
+
+    await fs.writeFile(contactsPath, JSON.stringify(delContact, null, 2))
     console.table(delContact);
   } catch (error) {
     console.log(error);
